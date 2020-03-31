@@ -158,11 +158,11 @@ AWS的托管Hadoop集群——EMR
     - Sequence files
     - Writable object
     - Avro data files
-    - Described by schema
+    - Described by schema  
     **列存储格式：**  
-    - ORC
+    - ORC  
     - Parquet  
-    避免使用 XML格式
+    避免使用 XML格式  
   - 2.9.2 文件大小
     避免小文件(<=100MB), 建议文件>=256MB are more efficient  
     对于小文件场景可减小HDFS block size, 例如：1MB (default is 128MB) ，可采用bootstrap进行设置：--bootstrap-action s3://elasticmapreduce/bootstrap-actions/configure-hadoop --args “-m,dfs.block.size=1048576”  
