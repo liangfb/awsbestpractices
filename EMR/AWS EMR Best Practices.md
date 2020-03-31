@@ -153,22 +153,26 @@ AWS的托管Hadoop集群——EMR
 
 - 2.9 EMR存储优化  
   - 2.9.1 文件格式选择：  
-    **行存储格式：**  
+  **行存储格式：**
     - Text files
     - Sequence files
     - Writable object
     - Avro data files
-    - Described by schema
+    - Described by schema  
+  
     **列存储格式：**  
     - ORC
     - Parquet  
+  
     避免使用 XML格式
-  - 2.9.2 文件大小
-    避免小文件(<=100MB), 建议文件>=256MB are more efficient  
-    对于小文件场景可减小HDFS block size, 例如：1MB (default is 128MB) ，可采用bootstrap进行设置：--bootstrap-action s3://elasticmapreduce/bootstrap-actions/configure-hadoop --args “-m,dfs.block.size=1048576”  
-    建议: 使用 S3DistCp 命令将小文件进行合并  
+
+  - 2.9.2 文件大小  
+    避免小文件(<=100MB), 建议文件>=256MB会更加有利于性能。对于小文件场景可减小HDFS block size（不建议）, 例如：1MB (default is 128MB) ，可采用bootstrap进行设置：--bootstrap-action s3://elasticmapreduce/bootstrap-actions/configure-hadoop --args “-m,dfs.block.size=1048576”  
+    建议: 使用S3DistCp命令将小文件进行合并  
     示例：将airlines目录下的小文件合并为以100M为单位的大文件  
+    ```
     s3-dist-cp --src s3://bucket/sparksamples/data/smalldata/airlines/ --dest s3://labfilebucket/sparksamples/data/ --targetSize=100 --groupBy='.*(year).*.csv.gz'  
+    ```
     在进行MapReduce时，每个mapper对应一个分片, 每个mapper 对应一个Java进程，创建大量mapper非常消耗资源，减少文件数量，采用与block size相匹配的文件大小  
     同时减少对S3和HDFS的请求，减少网络传输  
 
