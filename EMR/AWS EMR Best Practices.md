@@ -83,16 +83,16 @@ AWS的托管Hadoop集群——EMR
 }
 ```
 能够支持参数配置的EMR组件：  
-Hadoop 	    core-site.xml file  
-HBase	 	hbase-site.xml file  
-HDFS	 	hdfs-site.xml file  
-Hive 		hive-site.xml file  
-Hue 		ini file  
+Hadoop 	  core-site.xml file  
+HBase	 	  hbase-site.xml file  
+HDFS	 	  hdfs-site.xml file  
+Hive 		  hive-site.xml file  
+Hue 		  ini file  
 Oozie 		oozie-site.xml file  
 Presto	 	config.properties file  
 Presto	 	hive.properties file  
 Presto	 	mysql.properties file  
-YARN	 	yarn-site.xml file  
+YARN	 	  yarn-site.xml file  
 Spark 		spark-defaults.conf file  
 Flink 		flink-conf.yaml  
 
@@ -116,10 +116,10 @@ Core节点：根据HDFS的数据量需求（数据，日志等），为Master和
 Ganglia, Hadoop Resource Manager UI, Spark UI等  
 使用Auto Scaling来增强Task节点的弹性，示例指标设置：  
   - YarnMemoryAvailablePercentage  
-    >= 50%, scale in Task Nodes
+    &gt;= 50%, scale in Task Nodes
     < 10%, then consider "PendingContainer"
   - PendingContainer
-    >= 10 (combine with YarnMemoryAvailablePercentage < 10%), scale out 1 Task Node  
+    &gt;= 10 (combine with YarnMemoryAvailablePercentage < 10%), scale out 1 Task Node  
 ![](pics/6.png)
 
     **Scale In时的注意事项：**  
