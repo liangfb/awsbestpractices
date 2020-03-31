@@ -161,7 +161,7 @@ AWS的托管Hadoop集群——EMR
     - Described by schema  
   
     **列存储格式：**  
-    - ORC
+    - ORC  
     - Parquet  
   
     避免使用 XML格式
